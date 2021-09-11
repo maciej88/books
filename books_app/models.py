@@ -11,8 +11,8 @@ class Identifiers(models.Model):
 class Book(models.Model):
     title = models.TextField()
     author = models.CharField(max_length=124, blank=True)
-    publshed_date = models.CharField(max_length=20, blank=True)
-    isbn_number = models.OneToOneField(Identifiers, on_delete=models.CASCADE, unique=True)
+    publshed_date = models.IntegerField(blank=True)
+    isbn = models.OneToOneField(Identifiers, on_delete=models.CASCADE, unique=True, blank=False)
     page_count = models.IntegerField(blank=True)
     thumbnail = models.URLField(blank=True)
     publication_language = models.CharField(max_length=124, blank=True)
