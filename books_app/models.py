@@ -1,21 +1,20 @@
 from django.db import models
-
-
+from django.urls import reverse
+from books.settings import DATE_INPUT_FORMATS
 # Create your models here.
-class Identifiers(models.Model):
-    isbn_13 = models.CharField(max_length=124, blank=True, unique=True, null=True)
-    isbn_10 = models.CharField(max_length=124, blank=True, unique=True, null=True)
-    other = models.CharField(max_length=124, blank=True, unique=True, null=True)
 
 
 class Book(models.Model):
-    title = models.CharField(max_length=124)
-    author = models.CharField(max_length=124)
-    publshed_date = models.DateField()
-    isbn = models.OneToOneField(Identifiers, on_delete=models.CASCADE, unique=True, blank=False)
-    page_count = models.IntegerField()
-    thumbnail = models.URLField(blank=True, null=True)
-    publication_language = models.CharField(max_length=124)
+    title = models.CharField(max_length=124, verbose_name='Tytuł')
+    author = models.CharField(max_length=124, verbose_name='autor')
+    publshed_date = models.DateField(verbose_name='Data publikacji')
+    isbn = models.CharField(max_length=124, verbose_name='Numer ISBN')
+    page_count = models.IntegerField(verbose_name='Liczba stron')
+    thumbnail = models.URLField(null=True, blank=True, verbose_name='Link do okładki')
+    publication_language = models.CharField(max_length=124, verbose_name='Język publikacji')
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('book-list')
