@@ -7,7 +7,7 @@
 <body>
     <ul>
     {% for book in object_list %}
-    <li>{{ book.title }} - {{ book.author }}</li>
+        <li>{{ book.title }} - {{ book.author }} - <a href="{% url 'book-update' book.id %}">Modyfikuj</a></li>
 {% empty %}
     <li>something goes wrong</li>
 {% endfor %}

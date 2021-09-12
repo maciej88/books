@@ -5,7 +5,7 @@ from django.views import View
 from .forms import BookAddForm
 from .models import Book
 
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 
 # Create your views here.
@@ -21,3 +21,7 @@ class BookAddView(CreateView):
     template_name = 'book_add.html'
 
 
+class BookUpdateView(UpdateView):
+    model = Book
+    fields = '__all__'
+    template_name = 'book_update.html'
