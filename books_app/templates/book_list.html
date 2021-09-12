@@ -1,16 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Books</title>
-</head>
-<body>
-    <ul>
-    {% for book in object_list %}
-        <li>{{ book.title }} - {{ book.author }} - <a href="{% url 'book-update' book.id %}">Modyfikuj</a></li>
-{% empty %}
-    <li>something goes wrong</li>
-{% endfor %}
-</ul>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <table>
+        <ul>
+            <thead>
+            <tr>
+                <th>Tytuł</th>
+                <th>Autor</th>
+                <th>Data Publikacji</th>
+                <th>Liczba stron</th>
+                <th>Numer ISBN</th>
+                <th>Link do okładki</th>
+                <th>Język publikacji</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in object_list %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.publshed_date }}</td>
+                    <td>{{ book.page_count }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.thumbnail }}</td>
+                    <td>{{ book.publication_language }}</td>
+                    <td><a href="{% url 'book-update' book.id %}">Modyfikuj</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+{% endblock %}
