@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', BooksListView.as_view(), name='book-list'),
     path('create/', BookAddView.as_view(), name='book-add'),
-    path('update/<int:pk>', BookUpdateView.as_view(), name='book-update')
+    path('update/<str:pk>', BookUpdateView.as_view(), name='book-update')
 
 ]

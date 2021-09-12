@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="nav">
+    <nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+    <nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+    <nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+    <nav class="navbar navbar-light bg-light">
+  <form class="form-inline" method="get">
+        {{ filter.form }}
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Wyszukaj</button>
+  </form>
+</nav>
+    </div>
     <table>
         <ul>
             <thead>
@@ -14,11 +40,11 @@
             </tr>
             </thead>
             <tbody>
-            {% for book in object_list %}
+            {% for book in filter.qs %}
                 <tr>
                     <td>{{ book.title }}</td>
                     <td>{{ book.author }}</td>
-                    <td>{{ book.publshed_date }}</td>
+                    <td>{{ book.publshed_date|date:" d.m.Y " }}</td>
                     <td>{{ book.page_count }}</td>
                     <td>{{ book.isbn }}</td>
                     <td>{{ book.thumbnail }}</td>
