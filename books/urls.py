@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from books_app.views import BooksListView, BookAddView, BookUpdateView
+from books_app.views import BooksListView, BookAddView, BookUpdateView, GoogleApiView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', BooksListView.as_view(), name='book-list'),
     path('create/', BookAddView.as_view(), name='book-add'),
-    path('update/<str:pk>', BookUpdateView.as_view(), name='book-update')
+    path('update/<str:pk>', BookUpdateView.as_view(), name='book-update'),
+    path('api/', GoogleApiView.as_view(), name='book-api'),
 
 ]

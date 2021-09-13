@@ -9,3 +9,9 @@ class BookAddForm(forms.ModelForm):
         widgets = {
             'publshed_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'})
         }
+
+
+class BookApiForm(forms.Form):
+    key_words = forms.CharField(
+        max_length=124, label='Szukaj'
+    )
