@@ -11,7 +11,7 @@ class BookAddForm(forms.ModelForm):
         }
 
 
-class BookApiForm(forms.Form):
-    key_words = forms.CharField(
-        max_length=124, label='Szukaj'
-    )
+# class BookApiForm(forms.Form):
+#     key_words = forms.CharField(
+#         max_length=124, label='Szukaj'
+#     )
