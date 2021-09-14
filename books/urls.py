@@ -20,7 +20,7 @@ from books_app.views import \
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', BooksListView.as_view(), name='book-list'),
+    path('/', BooksListView.as_view(), name='book-list'),
     path('create/', BookAddView.as_view(), name='book-add'),
     path('update/<str:pk>', BookUpdateView.as_view(), name='book-update'),
     path('api/', GoogleApiView.as_view(), name='book-api'),
