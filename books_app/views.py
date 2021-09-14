@@ -15,7 +15,6 @@ from .serializers import BookSerializer
 
 class BooksListView(ListView):
     model = Book
-    paginate_by = 10
     template_name = "book_list.html"
 
     def get_context_data(self, **kwargs):
