@@ -1,1 +1,1 @@
-web: gunicorn books.wsg
+web: gunicorn books.wsgi
