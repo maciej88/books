@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView
@@ -50,7 +51,7 @@ class GoogleApiView(View):
         if form.is_valid():
             key_words = request.POST['key_words']
             key_words = key_words.replace(' ', '+')
-            google_url = request(f'https://www.googleapis.com/books/v1/volumes?q={key_words}')
+            google_url = HttpResponseRedirect(f'https://www.googleapis.com/books/v1/volumes?q={key_words}')
             if google_url.status_code == 200:
                 resoult = google_url.json()
 
@@ -87,9 +88,9 @@ class GoogleApiView(View):
                                 book.objects.create(publication_language=publication_language)
                             book.save()
                 messages.success(request, 'Dodano nową pozycję')
-                return redirect('book-list')
-            messages.error('Coś poszło nie tak')
-            return render(request, 'book_api.html', {'form': form})
+                return HttpResponseRedirect(redirect('book-list'))
+            errors = ('Coś poszło nie tak')
+            return render(request, 'book_api.html', {'form': form, 'messages': errors})
 
 
 class BookView(generics.ListAPIView):
