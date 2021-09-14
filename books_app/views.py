@@ -1,19 +1,14 @@
-from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView
-from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.filters import OrderingFilter
-from rest_framework.views import APIView
-from rest_framework.response import Response
-
+from django.contrib import messages
 
 from .forms import BookAddForm, BookApiForm
 from .models import Book
 from .filters import BookFilter
-from .google_api import books_to_database
 from .serializers import BookSerializer
 
 
@@ -40,20 +35,61 @@ class BookUpdateView(UpdateView):
     template_name = 'book_update.html'
 
 
-class GoogleApiView(FormView):
+class GoogleApiView(View):
     """
     Google api View for collect data
     """
     template_name = "book_api.html"
-    form_class = BookApiForm
-    success_url = reverse_lazy("book-list")
 
-    def form_valid(self, form):
-        key_words = form.cleaned_data["key_words"]
-        if not key_words:
-            redirect("google-api")
-        books_to_database(key_words)
-        return redirect("book-list")
+    def get(self, request):
+        form = BookApiForm()
+        return render(request, "book_api.html", {'form': form})
+
+    def post(self, request):
+        form = BookApiForm(request.POST)
+        if form.is_valid():
+            key_words = request.POST['key_words']
+            key_words = key_words.replace(' ', '+')
+            google_url = request(f'https://www.googleapis.com/books/v1/volumes?q={key_words}')
+            if google_url.status_code == 200:
+                resoult = google_url.json()
+
+                for item in resoult['items']: #check space in db
+                    if Book.objects.filter(
+                            title=item['volumeInfo']['title']):
+                        messages.warning(
+                            request, f"Książka '{key_words}' znajduje się już w bazie danych")
+                        return render('book_api.html', {'form': form})
+                    else:
+                        if 'authors' in item['volumeInfo']:
+                            book = Book()
+                            book.title = item['volumeInfo']['title']
+                            if 'publishedDate'in item['volumeInfo']:
+                                book.publshed_date = item['volumeInfo']['publishedDate']
+                            for author in item['volumeInfo']['authors']:
+                                author_create = Book.objects.get_or_create(
+                                    name=author)[0]
+                                book.objects.create(author_create=author_create)
+                            for item['type'] in item['volumeInfo']['industryIdentifiers']:
+                                if item['type'] == 'ISBN_13':
+                                    isbn = item['industryIdentifiers']['identifier']
+                                else:
+                                    isbn = None
+                                book.objects.create(isbn=isbn)
+                            if 'pageCount' in item['volumeInfo']:
+                                page_count=item['volumeInfo']['publishedDate']
+                                book.objects.create(page_count=page_count)
+                            if 'thumbnail' in item['volumeInfo']['imageLinks']:
+                                thumbnail = item['volumeInfo']['publishedDate']['thumbnail']
+                                book.objects.create(thumbnail=thumbnail)
+                            if 'language' in item['volumeInfo']['language']:
+                                publication_language = item['volumeInfo']['language']
+                                book.objects.create(publication_language=publication_language)
+                            book.save()
+                messages.success(request, 'Dodano nową pozycję')
+                return redirect('book-list')
+            messages.error('Coś poszło nie tak')
+            return render(request, 'book_api.html', {'form': form})
 
 
 class BookView(generics.ListAPIView):

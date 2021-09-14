@@ -1,8 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form action="" method="post">
+    <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Dodaj Tytuły">
+        <input type="submit" value="Szukaj">
     </form>
+    {% if message in messages %}
+    <p>{{ message }}</p>
+    {% endif %}
+<table class="table table-bordered">
+        <ul>
+            <thead>
+            <tr>
+                <th scope="col">Tytuł</th>
+                <th scope="col">Autor</th>
+                <th scope="col">Data Publikacji</th>
+                <th scope="col">Liczba stron</th>
+                <th scope="col">Numer ISBN</th>
+                <th scope="col">Link do okładki</th>
+                <th scope="col">Język publikacji</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.publshed_date|date:" d.m.Y " }}</td>
+                    <td>{{ book.page_count }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.thumbnail }}</td>
+                    <td>{{ book.publication_language }}</td>
+                    <td><a href="{% url 'book-update' book.id %}"
+                           class="btn btn-outline-success my-2 my-sm-0">Modyfikuj</a></td>
+                </tr>
+                {% empty %}
+                <tr>Brak wyników do wyświetlenia</tr>
+            {% endfor %}
+            </tbody>
+    </table>
 {% endblock %}
