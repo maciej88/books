@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView
 from django_filters.rest_framework import DjangoFilterBackend
@@ -66,7 +66,7 @@ class GoogleApiView(View):
                             book = Book()
                             book.title = item['volumeInfo']['title']
                             if 'publishedDate'in item['volumeInfo']:
-                                book.publshed_date = item['volumeInfo']['publishedDate']
+                                book.publication_date = item['volumeInfo']['publishedDate']
                             for author in item['volumeInfo']['authors']:
                                 author_create = Book.objects.get_or_create(
                                     name=author)[0]
@@ -78,10 +78,10 @@ class GoogleApiView(View):
                                     isbn = None
                                 book.objects.create(isbn=isbn)
                             if 'pageCount' in item['volumeInfo']:
-                                page_count=item['volumeInfo']['publishedDate']
+                                page_count=item['volumeInfo']['pageCount']
                                 book.objects.create(page_count=page_count)
                             if 'thumbnail' in item['volumeInfo']['imageLinks']:
-                                thumbnail = item['volumeInfo']['publishedDate']['thumbnail']
+                                thumbnail = item['volumeInfo']['thumbnail']
                                 book.objects.create(thumbnail=thumbnail)
                             if 'language' in item['volumeInfo']['language']:
                                 publication_language = item['volumeInfo']['language']
