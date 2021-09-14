@@ -7,7 +7,7 @@ class BookAddForm(forms.ModelForm):
         model = Book
         fields = '__all__'
         widgets = {
-            'publication_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'})
+            'publshed_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'})
         }
 
 

@@ -7,7 +7,7 @@ from .models import Book
 REQUEST_DATA_SET = (
     {'title': 'Hobbit',
      'author': 'Tolkien',
-     'publication_date': datetime.date(2021, 1, 2),
+     'publshed_date': datetime.date(2021, 1, 2),
      'isbn': '123456789',
      'page_count': int(555),
      'thumbnail': 'http://books.google.pl/books?id=DqLPAAAAMAAJ&dq=Hobbit&hl=&source=gbs_api',
@@ -26,7 +26,7 @@ def test_book_create(client):
     book = Book.objects.get(**REQUEST_DATA_SET)
     assert book.title == REQUEST_DATA_SET['title']
     assert book.author == REQUEST_DATA_SET['author']
-    assert book.publication_date == REQUEST_DATA_SET['publication_date']
+    assert book.publshed_date == REQUEST_DATA_SET['publshed_date']
     assert book.isbn == REQUEST_DATA_SET['isbn']
     assert book.page_count == REQUEST_DATA_SET['page_count']
     assert book.thumbnail == REQUEST_DATA_SET['thumbnail']

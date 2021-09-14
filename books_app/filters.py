@@ -6,9 +6,9 @@ from .models import Book
 
 
 class BookFilter(django_filters.FilterSet):
-    fromdate = DateFilter(field_name="publication_date", lookup_expr='gte', label='Od daty',
+    fromdate = DateFilter(field_name="publshed_date", lookup_expr='gte', label='Od daty',
                           widget=forms.DateInput(attrs={'placeholder': 'Select a date', 'type': 'date'}))
-    todate = DateFilter(field_name="publication_date", lookup_expr='lte', label='Do daty',
+    todate = DateFilter(field_name="publshed_date", lookup_expr='lte', label='Do daty',
                         widget=forms.DateInput(attrs={'placeholder': 'Select a date', 'type': 'date'}))
     title = CharFilter(field_name='title', lookup_expr='icontains', label='Tytuł')
     author = CharFilter(field_name='author', lookup_expr='icontains', label='Autor')
@@ -17,4 +17,4 @@ class BookFilter(django_filters.FilterSet):
     class Meta:
         model = Book
         fields = '__all__'
-        exclude = ['isbn', 'publication_date', 'page_count', 'thumbnail']
+        exclude = ['isbn', 'publshed_date', 'page_count', 'thumbnail']

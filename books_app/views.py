@@ -66,7 +66,7 @@ class GoogleApiView(View):
                             book = Book()
                             book.title = item['volumeInfo']['title']
                             if 'publishedDate'in item['volumeInfo']:
-                                book.publication_date = item['volumeInfo']['publishedDate']
+                                book.publshed_date = item['volumeInfo']['publishedDate']
                             for author in item['volumeInfo']['authors']:
                                 author_create = Book.objects.get_or_create(
                                     name=author)[0]
