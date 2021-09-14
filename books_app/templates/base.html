@@ -14,19 +14,20 @@
 <body>
 
 <div class="d-flex p-2">
-    <div2 class="p-3 mb-2 bg-light text-black">
+    <div class="p-3 mb-2 bg-light text-black">
         <nav class="navbar navbar-light bg-light">
             <form class="form-inline">
                 <a href="{% url 'book-add' %}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Wprowadź</a>
                 <a href="{% url 'book-list' %}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Lista</a>
-<!--           <a href="{% url 'book-api' %}" class="btn btn-outline-success my-2 my-sm-0" type="submit">API dla książek</a> -->
+                <a href="{% url 'book-api' %}" class="btn btn-outline-success my-2 my-sm-0" type="submit">API dla
+                    książek</a>
             </form>
         </nav>
 
         {% block content %}
 
         {% endblock %}
-    </div2>
+    </div>
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->
