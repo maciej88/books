@@ -21,11 +21,11 @@
         </tr>
         </thead>
         <tbody>
-        {% for book in books %}
+        {% for book in book.qs %}
         <tr>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
-            <td>{{ book.publshed_date|date:" d.m.Y " }}</td>
+            <td>{{ book.publication_date|date:" %d/%m/%Y " }}</td>
             <td>{{ book.page_count }}</td>
             <td>{{ book.isbn }}</td>
             <td>{{ book.thumbnail }}</td>

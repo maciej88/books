@@ -66,7 +66,7 @@ class GoogleApiView(View):
                             book = Book()
                             book.title = item['volumeInfo']['title']
                             if 'publishedDate'in item['volumeInfo']:
-                                book.publshed_date = item['volumeInfo']['publishedDate']
+                                book.publication_date = item['volumeInfo']['publishedDate']
                             for author in item['volumeInfo']['authors']:
                                 author_create = Book.objects.get_or_create(
                                     name=author)[0]
@@ -101,4 +101,4 @@ class BookView(generics.ListAPIView):
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filter_class = BookFilter
-    ordering_fields = ['published_date']
+    ordering_fields = ['publication_date']
