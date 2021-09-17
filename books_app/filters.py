@@ -12,7 +12,7 @@ class BookFilter(django_filters.FilterSet):
                         widget=forms.DateInput(attrs={'placeholder': 'Select a date', 'type': 'date'}))
     title = CharFilter(field_name='title', lookup_expr='icontains', label='Tytuł')
     author = CharFilter(field_name='author', lookup_expr='icontains', label='Autor')
-    publication_language = CharFilter(field_name='title', lookup_expr='icontains', label='Język publikacji')
+    publication_language = CharFilter(field_name='publication_language', lookup_expr='icontains', label='Język publikacji')
 
     class Meta:
         model = Book
