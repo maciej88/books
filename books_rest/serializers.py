@@ -1,4 +1,4 @@
-from .models import Book
+from books_app.models import Book
 from rest_framework import serializers
 
 

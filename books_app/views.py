@@ -2,16 +2,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import generics
-from rest_framework.filters import OrderingFilter
+
 from django.contrib import messages
 
 
 from .forms import BookAddForm, BookApiForm
 from .models import Book
 from .filters import BookFilter
-from .serializers import BookSerializer
+
 
 
 class BooksListView(ListView):
@@ -93,12 +91,3 @@ class GoogleApiView(View):
             return render(request, 'book_api.html', {'form': form, 'messages': errors})
 
 
-class BookView(generics.ListAPIView):
-    """
-    Rest-framework list of books view + filtering system
-    """
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filter_class = BookFilter
-    ordering_fields = ['publication_date']

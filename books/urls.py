@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from books_app.views import \
-    BooksListView, BookAddView, BookUpdateView, BookView, GoogleApiView
+    BooksListView, BookAddView, BookUpdateView, GoogleApiView
+from books_rest.views import BookView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
