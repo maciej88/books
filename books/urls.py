@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from books_app.views import \
     BooksListView, BookAddView, BookUpdateView, GoogleApiView
-from books_rest.views import BookView
+from books_app.rest_api.viewsets import BookView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

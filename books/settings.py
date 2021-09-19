@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
     #used apps:
     'books_app',
-    'books_rest',
 
     #used libaries:
     'rest_framework',

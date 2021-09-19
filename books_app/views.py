@@ -91,3 +91,5 @@ class GoogleApiView(View):
             return render(request, 'book_api.html', {'form': form, 'messages': errors})
 
 
+for item in data['items']:
+    print(item['volumeInfo']['title'])
