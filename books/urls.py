@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from books_app.views import \
-    BooksListView, BookAddView, BookUpdateView, GoogleApiView
+    BooksListView, BookAddView, BookUpdateView
+from google_api.books_api import GoogleApiView
+
 from books_app.rest_api.viewsets import BookView
 
 urlpatterns = [
