@@ -1,6 +1,4 @@
 # Books
-Tasks on Junior for STX Next.
-Site on outside server: https://maciej-book-api.herokuapp.com/
 
 include:
 - list of books in normal and REST API views,
