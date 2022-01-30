@@ -6,6 +6,8 @@ from django.contrib import messages
 from books_app.forms import BookApiForm
 from books_app.models import Book
 
+class GetBookData:
+    def
 
 class GoogleApiView(View):
     """
@@ -64,3 +66,4 @@ class GoogleApiView(View):
             errors = ('Coś poszło nie tak')
             return render(request, 'book_api.html', {'form': form, 'messages': errors})
 
+BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="
