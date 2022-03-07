@@ -1,10 +1,5 @@
-from django.views import View
-from django.shortcuts import render, redirect
-import requests
-from django.contrib import messages
+iport requests
 
-from books_app.forms import BookApiForm
-from books_app.models import Book
 
 class GetBookData:
     def
