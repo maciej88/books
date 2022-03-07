@@ -1,5 +1,7 @@
 # Books
 
+#!!!project work in progress!!!
+
 include:
 - list of books in normal and REST API views,
 - creating view,
