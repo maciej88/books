@@ -62,3 +62,11 @@ class GoogleApiView(View):
             return render(request, 'book_api.html', {'form': form, 'messages': errors})
 
 BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="
+
+"""
+Site plan:
+rendering view ith list of result,
+possibility of add each result separately,
+no validation for add!
+
+"""
