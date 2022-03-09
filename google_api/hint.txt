@@ -1,0 +1,30 @@
+```
+if google_url.status_code != 200:
+    errors = ('Coś poszło nie tak')
+    return render(request, 'book_api.html', {'form': form, 'messages': errors})
+resoult = google_url.json()  # literówka, poprawnie jest result
+...
+messages.success(request, 'Dodano nową pozycję')
+return HttpResponseRedirect(redirect('book-list'))
+```
+ify do uproszczenia:
+
+if 'pageCount' in item['volumeInfo']:
+    page_count=item['volumeInfo']['pageCount']
+    book.objects.create(page_count=page_count)  # dlaczego create?
+
+#  Np.takie coś
+page_count = item['volumeInfo'].get('pageCount')
+book.page_count = page_count
+
+użycie biblioteki requests, zamiast HttpResponseRedirect
+shell:
+```
+>>> import requests
+>>> response = requests.get('https://www.googleapis.com/books/v1/volumes?q=Solaris')
+>>> import json
+>>> data = json.loads(response.content)
+>>> data.keys()
+dict_keys(['kind', 'totalItems', 'items'])
+
+```
