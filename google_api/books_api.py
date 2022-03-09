@@ -68,5 +68,4 @@ Site plan:
 rendering view ith list of result,
 possibility of add each result separately,
 no validation for add!
-
 """
