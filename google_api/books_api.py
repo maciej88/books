@@ -2,7 +2,7 @@ iport requests
 
 
 class GetBookData:
-    def
+
 
 class GoogleApiView(View):
     """

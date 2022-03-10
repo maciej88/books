@@ -1,3 +1,6 @@
+
+Link:
+https://developers.google.com/books/docs/v1/using#WorkingVolumes
 ```
 if google_url.status_code != 200:
     errors = ('Coś poszło nie tak')
@@ -28,3 +31,5 @@ shell:
 dict_keys(['kind', 'totalItems', 'items'])
 
 ```
+
+and i'm still collecting knowledge
