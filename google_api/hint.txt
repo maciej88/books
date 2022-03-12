@@ -35,4 +35,6 @@ for item in data['items']:
     print(item['volumeInfo']['authors'])
     print(item['volumeInfo']['publishedDate'])
 
+write functon for every key - if not in, write none in db
+
 and i'm still collecting knowledge
