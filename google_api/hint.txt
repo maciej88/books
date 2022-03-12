@@ -29,7 +29,10 @@ shell:
 >>> data = json.loads(response.content)
 >>> data.keys()
 dict_keys(['kind', 'totalItems', 'items'])
-
-```
+z shella:
+for item in data['items']:
+    print(item['volumeInfo']['title'])
+    print(item['volumeInfo']['authors'])
+    print(item['volumeInfo']['publishedDate'])
 
 and i'm still collecting knowledge

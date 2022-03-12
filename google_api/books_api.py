@@ -1,4 +1,4 @@
-iport requests
+import requests
 
 
 class GetBookData:
@@ -16,12 +16,11 @@ class GoogleApiView(View):
 
     def post(self, request):
         form = BookApiForm(request.POST)
-        if form.is_valid():
-            key_words = request.POST['key_words']
-            key_words = key_words.replace(' ', '+')
-            google_url = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={key_words}')
-            if google_url.status_code == 200:
-                result = google_url.json()
+        key_words = request.POST['key_words']
+        key_words = key_words.replace(' ', '+')
+        google_url = requests.get(f'https://www.googleapis.com/books/v1/volumes?q={key_words}')
+        if google_url.status_code == 200:
+            result = google_url.json()
 
                 for item in result['items']:  # check space in db
                     if Book.objects.filter(
