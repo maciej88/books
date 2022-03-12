@@ -32,9 +32,13 @@ dict_keys(['kind', 'totalItems', 'items'])
 z shella:
 for item in data['items']:
     print(item['volumeInfo']['title'])
-    print(item['volumeInfo']['authors'])
-    print(item['volumeInfo']['publishedDate'])
+    try:
+        print(item['volumeInfo']['authors'])
+    except KeyError:
+        print('None')
+    print('----------------------------')
 
 write functon for every key - if not in, write none in db
 
 and i'm still collecting knowledge
+
