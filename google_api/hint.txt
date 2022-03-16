@@ -40,6 +40,18 @@ for item in data['items']:
         print(item['volumeInfo']['industryIdentifiers'])
     except KeyError:
         print('Unknown identifiers')
+    try:
+        print(item['volumeInfo']['pageCount'])
+    except KeyError:
+        print('Unknown number of pages')
+    try:
+        print(item['volumeInfo']['imageLinks'])
+    except KeyError:
+        print('No link')
+    try:
+        print(item['volumeInfo']['language'])
+    except KeyError:
+        print('unknown language')
     print('----------------------------')
 
 write functon for every key - if not in, write none in db
