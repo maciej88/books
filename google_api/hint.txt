@@ -24,10 +24,10 @@ użycie biblioteki requests, zamiast HttpResponseRedirect
 shell:
 ```
 >>> import requests
->>> response = requests.get('https://www.googleapis.com/books/v1/volumes?q=Solaris')
->>> import json
->>> data = json.loads(response.content)
->>> data.keys()
+response = requests.get('https://www.googleapis.com/books/v1/volumes?q=Solaris')
+import json
+data = json.loads(response.content)
+data.keys()
 dict_keys(['kind', 'totalItems', 'items'])
 z shella:
 for item in data['items']:
@@ -35,7 +35,11 @@ for item in data['items']:
     try:
         print(item['volumeInfo']['authors'])
     except KeyError:
-        print('None')
+        print('Unknown author')
+    try:
+        print(item['volumeInfo']['industryIdentifiers'])
+    except KeyError:
+        print('Unknown identifiers')
     print('----------------------------')
 
 write functon for every key - if not in, write none in db
