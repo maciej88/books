@@ -23,13 +23,11 @@ book.page_count = page_count
 użycie biblioteki requests, zamiast HttpResponseRedirect
 shell:
 ```
->>> import requests
+import requests
 response = requests.get('https://www.googleapis.com/books/v1/volumes?q=Solaris')
 import json
 data = json.loads(response.content)
 data.keys()
-dict_keys(['kind', 'totalItems', 'items'])
-z shella:
 for item in data['items']:
     print(item['volumeInfo']['title'])
     try:
@@ -45,7 +43,7 @@ for item in data['items']:
     except KeyError:
         print('Unknown number of pages')
     try:
-        print(item['volumeInfo']['imageLinks'])
+        print(item['volumeInfo']['imageLinks']['thumbnail'])
     except KeyError:
         print('No link')
     try:
