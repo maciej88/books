@@ -50,7 +50,11 @@ for item in data['items']:
         print(item['volumeInfo']['language'])
     except KeyError:
         print('unknown language')
-    print('----------------------------')
+    try:
+        print(item['volumeInfo']['publishedDate'])
+    except KeyError:
+        print('no date')
+
 
 write functon for every key - if not in, write none in db
 
