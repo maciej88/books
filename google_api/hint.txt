@@ -37,10 +37,15 @@ for item in data['items']:
     try:
         print(item['volumeInfo']['industryIdentifiers'])
         for identifier in item['volumeInfo']['industryIdentifiers']:
-            if identifier['type'] == identifier['ISBN_10']:
-                print(identifier['identifier'])
+            if identifier['type'] == 'ISBN_10':
+                print(f"{identifier['type']}: {identifier['identifier']}")
+                pass
+            else identifier['type'] == 'ISBN_13':
+                print(f"{identifier['type']}: {identifier['identifier']}")
+            else identifier['type'] == 'OTHER':
+                print(f"{identifier['type']}: {identifier['identifier']}")
             else:
-            print('not working')
+                print('Unknown identifiers')
     except KeyError:
         print('Unknown identifiers')
     try:
